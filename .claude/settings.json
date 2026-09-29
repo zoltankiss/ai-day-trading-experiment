@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__robinhood-trading__.*|mcp__claude_ai_Gmail__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/order-guard.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(date:*)",
+      "Bash(uuidgen)",
+      "Edit(kb/**)",
+      "Edit(ops/requests/**)",
+      "Glob",
+      "Grep",
+      "Read",
+      "WebFetch",
+      "WebSearch",
+      "mcp__claude_ai_Gmail__send_message",
+      "mcp__robinhood-trading"
+    ]
+  }
+}

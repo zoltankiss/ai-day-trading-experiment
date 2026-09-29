@@ -1,0 +1,9 @@
+ops/config.local
+kb/
+ops/logs/
+ops/state/*.done
+ops/requests/*.txt
+ops/.run.lock
+.CLAUDE.md.swp
+*.swp
+.DS_Store

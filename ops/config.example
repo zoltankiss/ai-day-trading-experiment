@@ -1,0 +1,5 @@
+# Copy to ops/config.local (git-ignored) and fill in. Sourced by run.sh and the order guard.
+# The ONE cash account the agent may trade (Robinhood account_number with agentic_allowed=true).
+TRADER_ACCOUNT="000000000"
+# The only address run summaries may be emailed to.
+TRADER_OWNER_EMAIL="you@example.com"

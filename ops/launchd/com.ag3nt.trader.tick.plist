@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.ag3nt.trader.tick</string>
+  <key>UserName</key><string>agentictrader</string>
+  <key>ProgramArguments</key>
+  <array><string>/bin/zsh</string><string>/Users/agentictrader/ai-day-trading-experiment/ops/tick.sh</string></array>
+  <key>EnvironmentVariables</key>
+  <dict><key>HOME</key><string>/Users/agentictrader</string><key>USER</key><string>agentictrader</string></dict>
+  <key>WorkingDirectory</key><string>/Users/agentictrader/ai-day-trading-experiment</string>
+  <key>StartInterval</key><integer>300</integer>
+  <key>AbandonProcessGroup</key><true/>
+  <key>StandardOutPath</key><string>/Users/agentictrader/ai-day-trading-experiment/ops/logs/tick.out</string>
+  <key>StandardErrorPath</key><string>/Users/agentictrader/ai-day-trading-experiment/ops/logs/tick.err</string>
+</dict>
+</plist>

@@ -96,18 +96,18 @@ still narrate what they're doing.
 
 The money in the account is money Zoltan can afford to lose. Aggressive is the mandate.
 
-**Allowed:** long stock; long unleveraged ETFs, including plain 1x inverse ETFs (a cash
-purchase — worst case the position goes to zero, never below). Day trading is allowed:
-buying with settled cash and selling the same day is fine; the proceeds just aren't
-spendable until T+1.
-**No leverage of any kind (Zoltan, 2026-09-28 — supersedes his earlier "triple leverage,
-great"):** no 2x/3x/leveraged or leveraged-inverse ETFs (SOXL, TQQQ, RAM, SOXS, single-
-stock 2x funds, …), in addition to no margin. If a fund's name or prospectus says "2x",
-"3x", "Ultra", "leveraged" or "daily target of a multiple", don't buy it.
+**Allowed:** long stock; long ETFs **including leveraged (2x/3x) and leveraged-inverse
+ETFs** (SOXL, SOXS, TQQQ, RAM, single-stock 2x funds, …). Bought with cash, any ETF's worst
+case is the position going to zero, never below, so it cannot put the account negative.
+That is the line Zoltan drew: **zero margin, zero risk of going negative** (clarified
+2026-09-29, correcting an agent's over-literal reading of "no leverage" as banning
+leveraged ETFs). Know what you hold: leveraged ETFs reset daily, decay in choppy markets
+and can lose most of their value in days, so size and time them deliberately.
+Day trading is allowed: buying with settled cash and selling the same day is fine; the
+proceeds just aren't spendable until T+1.
 **Forbidden (enforced by `.claude/hooks/order-guard.sh`, not just by this text):** any
 account but `TRADER_ACCOUNT`; options of any kind; short selling; crypto (not in thesis —
-revisit deliberately); any margin / limited-margin / options-upgrade tool; buying a
-known leveraged ETF (denylist in the hook — incomplete, so the rule above still binds).
+revisit deliberately); any margin / limited-margin / options-upgrade tool.
 **Every position gets a broker-side stop.** As soon as a buy fills, place a GTC
 `stop_market` sell for the full quantity at the position's invalidation level, so the
 exit happens at Robinhood even if the scheduler or this Mac is down. To sell or change
@@ -129,6 +129,6 @@ a same-day sale.
 
 Aggressively buy **small-cap bottlenecks to AI** (and to SpaceX-adjacent space build-out):
 memory/HBM/DRAM, power & energy, cooling, optical interconnect, advanced packaging,
-substrates, specialty materials. Unleveraged sector ETFs welcome. The thesis itself is a
+substrates, specialty materials. Leveraged/sector ETFs welcome. The thesis itself is a
 living hypothesis — each research run re-derives *what the current binding bottleneck
 is* from evidence and updates `kb/thesis.md`; it is not fixed at "RAM".

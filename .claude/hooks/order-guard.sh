@@ -60,17 +60,6 @@ case "$short" in
     side=$(print -r -- "$input" | jq -r '.tool_input.side // empty')
     [[ "$short" != cancel_equity_order && "$side" != buy && "$side" != sell ]] && \
       block "side must be buy or sell (got '$side')"
-    # No leverage (Zoltan, 2026-09-28). Denylist of well-known leveraged / leveraged-inverse
-    # ETFs — incomplete by nature; CLAUDE.md's rule still binds for anything not listed.
-    sym=$(print -r -- "$input" | jq -r '.tool_input.symbol // "" | ascii_upcase')
-    LEVERAGED=" SOXL SOXS TQQQ SQQQ UPRO SPXU SPXL SPXS SSO SDS QLD QID UDOW SDOW DDM DXD \
-      TNA TZA UWM TWM URTY SRTY MVV MZZ LABU LABD FAS FAZ TECL TECS FNGU FNGD BULZ BERZ \
-      WEBL WEBS USD SSG ROM REW NUGT DUST JNUG JDST UCO SCO BOIL KOLD GUSH DRIP ERX ERY \
-      YINN YANG CURE DPST NAIL DFEN UTSL RETL TPOR DRN DRV TMF TMV UBT TBT UGL GLL AGQ ZSL \
-      NVDL NVDU NVDX NVDD TSLL TSLQ TSLR TSLS MSTU MSTX MSTZ CONL AMDL MUU MULL AVL AVGX \
-      SMCX PLTU GGLL AAPU METU AMZU MSFU RAM SOXQ QQQU "
-    [[ "$side" == buy && "$LEVERAGED" == *" $sym "* ]] && \
-      block "$sym is a leveraged ETF — no leverage of any kind (CLAUDE.md)"
     # A sell in a cash account cannot open a short (broker rejects selling unowned shares);
     # this hook cannot see positions, so the broker is the backstop for over-selling.
     if [[ "$short" != review_equity_order ]]; then

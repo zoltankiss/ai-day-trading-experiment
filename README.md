@@ -36,14 +36,13 @@ launchd (every 5 min) → ops/tick.sh → ops/run.sh <phase> → claude -p (Robi
 
 The core property is that **the account cannot go negative.**
 
-- **Cash account only, no margin, no leverage.** In a cash account the worst case for any
-  long position is zero. Short selling, options, crypto, margin and options-upgrade tools,
-  and known leveraged ETFs are all refused.
+- **Cash account only, no margin.** In a cash account the worst case for any long
+  position is zero, and that includes leveraged and inverse ETFs, which the agent may buy.
+  Short selling, options, crypto, and margin and options-upgrade tools are all refused.
 - **Enforced mechanically, not just in prompts.** `order-guard.sh` runs before every
   Robinhood and Gmail tool call and blocks:
   - any account except the configured one
   - forbidden tools
-  - buys of leveraged ETFs
   - any order while `ops/MODE` is `plan`
   - any order during the research phase
   - email to anyone except the owner, with no cc, bcc or attachments, and no inbox reads

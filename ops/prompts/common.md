@@ -51,9 +51,11 @@ watch, news due at a set time — append a line to `ops/requests/<YYYY-MM-DD>.tx
 08:35 and 14:50 CT; it ignores anything else. Don't request runs you don't need.
 
 Standing rules added for the live launch (2026-09-28) — see CLAUDE.md for the full text:
-- NO LEVERAGE of any kind: no margin and no 2x/3x/leveraged or leveraged-inverse ETFs.
-  Plans in kb/ written before 2026-09-28 may mention RAM/SOXL/SOXS — those are now off
-  the table; pick an unleveraged alternative or hold cash.
+- NO MARGIN, and never anything that could put the account negative. Leveraged and
+  leveraged-inverse ETFs (RAM, SOXL, SOXS, …) ARE allowed: bought with cash, the worst
+  case is zero. A 2026-09-28 note in kb/ calling them "forbidden" was a misreading and is
+  withdrawn (2026-09-29) — correct it in kb/ when you next touch those files. Mind the
+  daily reset and volatility decay when sizing and choosing holding periods.
 - Day trading is allowed (settled cash in, sell same day is fine); remember the sale's
   proceeds are not spendable until the next business day.
 - Stops: every open position must have a GTC `stop_market` sell at Robinhood for its full

@@ -63,7 +63,12 @@ Standing rules added for the live launch (2026-09-28) — see CLAUDE.md for the 
   and fix any position missing one. Cancel the stop before selling or re-pricing it.
 - Be efficient with tokens: do the work the phase needs, then stop. No busywork runs.
 - Last step of every run: email Zoltan with `mcp__claude_ai_Gmail__send_message`, to
-  [TRADER_OWNER_EMAIL] only, subject `[trader] <phase> <YYYY-MM-DD HH:MM> — <one-line
-  headline>`, plain-text body = this run's journal section (orders placed with fill
-  prices, stops set, positions + P&L, what's next). No cc/bcc/attachments. If the send
-  fails (e.g. connector scope), note it in the journal and finish — never retry in a loop.
+  [TRADER_OWNER_EMAIL] only. Format it as HTML using `ops/email-template.html`: fill every
+  {{PLACEHOLDER}}, repeat the position/order/bullet rows as needed, drop the "Needs you" row
+  when nothing needs Zoltan, and pass it as `htmlBody`. Also pass a short plain-text `body`
+  (headline + decision + next) as the fallback. Subject:
+  `[trader] <Phase> · <one-line headline> · <since-launch P&L %>`, e.g.
+  `[trader] Review · Hold into MU print · +2.2%`. Write for a human skimming on a phone:
+  plain words, the decision and why up top. Show the account only as ••••last4, and leave
+  out order ids and ref_ids (those stay in the journal). No cc/bcc/attachments. If the send
+  fails (e.g. connector scope), note it in the journal and finish. Never retry in a loop.

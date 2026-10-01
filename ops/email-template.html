@@ -1,0 +1,109 @@
+<!--
+  Run-summary email template. The agent fills the {{PLACEHOLDERS}}, repeats the marked row
+  blocks as needed, and sends the result as `htmlBody` (with a plain-text `body` fallback).
+  Email-client rules: tables + inline styles only, no <style> blocks, no external images or
+  fonts, no scripts. Keep it under ~30 KB.
+
+  Colors: gain #0a7a3d on #e6f4ea · loss #b3261e on #fce8e6 · neutral #5f6368 on #f1f3f4.
+  Phase badge colors: research #6b4fbb · trade #1a73e8 · review #0b8043 · check #e37400.
+  MODE pill: live #b3261e (white text) · plan #5f6368 (white text).
+-->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f4f5f7" style="background:#f4f5f7;padding:24px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#202124;">
+<tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:600px;max-width:100%;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e3e5e8;">
+
+  <!-- Header -->
+  <tr><td bgcolor="#111827" style="background:#111827;padding:20px 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td style="color:#ffffff;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">AI Trader</td>
+      <td align="right" style="font-size:12px;">
+        <span style="background:{{PHASE_COLOR}};color:#ffffff;padding:4px 10px;border-radius:999px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;">{{PHASE}}</span>
+        &nbsp;<span style="background:{{MODE_COLOR}};color:#ffffff;padding:4px 10px;border-radius:999px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;">{{MODE}}</span>
+      </td>
+    </tr></table>
+    <div style="color:#9ca3af;font-size:13px;margin-top:10px;">{{DATETIME}} CT · cash account ••••{{ACCOUNT_LAST4}}</div>
+  </td></tr>
+
+  <!-- Headline + decision -->
+  <tr><td style="padding:24px 28px 8px 28px;">
+    <div style="font-size:22px;line-height:1.3;font-weight:700;color:#111827;">{{HEADLINE}}</div>
+    <div style="margin-top:10px;font-size:15px;line-height:1.55;color:#3c4043;">{{DECISION_SUMMARY}}</div>
+  </td></tr>
+
+  <!-- KPI tiles -->
+  <tr><td style="padding:16px 22px 8px 22px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td width="25%" style="padding:6px;"><div style="background:#f8f9fa;border-radius:10px;padding:12px 14px;">
+        <div style="font-size:11px;color:#5f6368;text-transform:uppercase;letter-spacing:.06em;">Account</div>
+        <div style="font-size:19px;font-weight:700;margin-top:4px;">{{ACCOUNT_VALUE}}</div></div></td>
+      <td width="25%" style="padding:6px;"><div style="background:{{DAY_BG}};border-radius:10px;padding:12px 14px;">
+        <div style="font-size:11px;color:#5f6368;text-transform:uppercase;letter-spacing:.06em;">Today</div>
+        <div style="font-size:19px;font-weight:700;margin-top:4px;color:{{DAY_FG}};">{{DAY_PNL}}</div></div></td>
+      <td width="25%" style="padding:6px;"><div style="background:{{TOTAL_BG}};border-radius:10px;padding:12px 14px;">
+        <div style="font-size:11px;color:#5f6368;text-transform:uppercase;letter-spacing:.06em;">Since launch</div>
+        <div style="font-size:19px;font-weight:700;margin-top:4px;color:{{TOTAL_FG}};">{{TOTAL_PNL}}</div></div></td>
+      <td width="25%" style="padding:6px;"><div style="background:#f8f9fa;border-radius:10px;padding:12px 14px;">
+        <div style="font-size:11px;color:#5f6368;text-transform:uppercase;letter-spacing:.06em;">Settled cash</div>
+        <div style="font-size:19px;font-weight:700;margin-top:4px;">{{CASH}}</div></div></td>
+    </tr></table>
+  </td></tr>
+
+  <!-- Positions -->
+  <tr><td style="padding:16px 28px 4px 28px;font-size:13px;font-weight:700;color:#111827;text-transform:uppercase;letter-spacing:.06em;">Positions</td></tr>
+  <tr><td style="padding:0 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:14px;border-collapse:collapse;">
+      <tr style="color:#5f6368;font-size:11px;text-transform:uppercase;letter-spacing:.05em;">
+        <td style="padding:8px 0;border-bottom:1px solid #e3e5e8;">Ticker</td>
+        <td align="right" style="padding:8px 0;border-bottom:1px solid #e3e5e8;">Qty @ cost</td>
+        <td align="right" style="padding:8px 0;border-bottom:1px solid #e3e5e8;">Price</td>
+        <td align="right" style="padding:8px 0;border-bottom:1px solid #e3e5e8;">P&amp;L</td>
+        <td align="right" style="padding:8px 0;border-bottom:1px solid #e3e5e8;">Stop</td>
+      </tr>
+      <!-- REPEAT per position -->
+      <tr>
+        <td style="padding:10px 0;border-bottom:1px solid #f1f3f4;"><b>{{TICKER}}</b><div style="font-size:12px;color:#5f6368;">{{BOTTLENECK}}</div></td>
+        <td align="right" style="padding:10px 0;border-bottom:1px solid #f1f3f4;color:#3c4043;">{{QTY}} @ {{COST}}</td>
+        <td align="right" style="padding:10px 0;border-bottom:1px solid #f1f3f4;">{{PRICE}}</td>
+        <td align="right" style="padding:10px 0;border-bottom:1px solid #f1f3f4;"><span style="background:{{PNL_BG}};color:{{PNL_FG}};padding:3px 8px;border-radius:6px;font-weight:600;">{{PNL}}</span></td>
+        <td align="right" style="padding:10px 0;border-bottom:1px solid #f1f3f4;color:#3c4043;">{{STOP}}<div style="font-size:12px;color:#5f6368;">{{STOP_DISTANCE}} away</div></td>
+      </tr>
+      <!-- /REPEAT. With no positions, one row: <td colspan="5" style="padding:12px 0;color:#5f6368;">No open positions — all cash.</td> -->
+    </table>
+  </td></tr>
+
+  <!-- Orders this run -->
+  <tr><td style="padding:20px 28px 4px 28px;font-size:13px;font-weight:700;color:#111827;text-transform:uppercase;letter-spacing:.06em;">Orders this run</td></tr>
+  <tr><td style="padding:0 28px;font-size:14px;line-height:1.6;color:#3c4043;">
+    <!-- REPEAT per order; with none: <div style="color:#5f6368;">None — {{WHY_NO_ORDERS}}</div> -->
+    <div style="padding:8px 0;border-bottom:1px solid #f1f3f4;"><b style="color:{{SIDE_COLOR}};">{{SIDE}}</b> {{QTY}} {{TICKER}} · {{ORDER_TYPE}} · {{STATUS}}<div style="font-size:13px;color:#5f6368;">{{ORDER_REASON}}</div></div>
+    <!-- /REPEAT -->
+  </td></tr>
+
+  <!-- Why / market -->
+  <tr><td style="padding:20px 28px 4px 28px;font-size:13px;font-weight:700;color:#111827;text-transform:uppercase;letter-spacing:.06em;">Reasoning</td></tr>
+  <tr><td style="padding:0 28px;font-size:14px;line-height:1.6;color:#3c4043;">
+    <ul style="margin:6px 0 0 0;padding-left:20px;">
+      <!-- 2–5 bullets: thesis status, what the tape did, why this decision -->
+      <li style="margin-bottom:6px;">{{REASON_BULLET}}</li>
+    </ul>
+  </td></tr>
+
+  <!-- Next -->
+  <tr><td style="padding:16px 28px 0 28px;">
+    <div style="background:#eef3fd;border-left:4px solid #1a73e8;border-radius:6px;padding:12px 16px;font-size:14px;line-height:1.55;color:#1f3b6e;"><b>Next:</b> {{NEXT_STEPS}}</div>
+  </td></tr>
+
+  <!-- Optional alert (omit the row if nothing needs Zoltan) -->
+  <tr><td style="padding:12px 28px 0 28px;">
+    <div style="background:#fef7e0;border-left:4px solid #e37400;border-radius:6px;padding:12px 16px;font-size:14px;line-height:1.55;color:#7a4a00;"><b>Needs you:</b> {{ALERT}}</div>
+  </td></tr>
+
+  <!-- Footer -->
+  <tr><td style="padding:24px 28px 22px 28px;font-size:12px;line-height:1.5;color:#80868b;">
+    Autonomous run on macmini64 · model {{MODEL}} · full detail in kb/journal/{{DATE}}.md<br>
+    Cash account, no margin. Experimental — not financial advice.
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
